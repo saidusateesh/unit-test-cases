@@ -72,5 +72,13 @@ jobs:
         with:
            name: test-report
            path: 'unit-tests/build/report.xml'
+      -  name: Publish Test Results
+         uses: naveen1902/unit-test-action@v2
+         if: always()
+         with:
+           junit_files: "unit-tests/build/report.xml"
+           nunit_files: "unit-tests/build/report.xml"
+           xunit_files: "unit-tests/build/report.xml"
+          
      
           
