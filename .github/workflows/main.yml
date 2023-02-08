@@ -78,9 +78,6 @@ jobs:
          with:
            name: test-report
            path: 'unit-tests/build/report.xml'
-           junit_files: "unit-tests/build/report.xml"
-           nunit_files: "unit-tests/build/report.xml"
-           xunit_files: "unit-tests/build/report.xml"
-          
+         
      
           
