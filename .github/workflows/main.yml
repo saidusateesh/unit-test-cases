@@ -73,10 +73,10 @@ jobs:
            name: test-report
            path: 'unit-tests/build/report.xml'
       -  name: Publish Test Results
-         uses: dorny/test-reporter@v1
+         uses: actions/publish-test-results@v1
          if: always()
          with:
-           name: test-report
+           name: Test-results
            path: 'unit-tests/build/report.xml'
          
      
