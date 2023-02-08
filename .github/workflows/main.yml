@@ -73,7 +73,7 @@ jobs:
            name: test-report
            path: 'unit-tests/build/report.xml'
       -  name: Publish Test Results
-         uses: naveen1902/unit-test/action@v2
+         uses: naveen1902/unit-test/action@v3
          if: always()
          with:
            junit_files: "unit-tests/build/report.xml"
