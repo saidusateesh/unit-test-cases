@@ -1,0 +1,75 @@
+name: CMake
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
+  BUILD_TYPE: Debug
+  SOLUTION: 'unit-tests/build/report.xml'
+  
+jobs:
+  build:
+    # The CMake configure and build commands are platform-agnostic and should work equally
+    # well on Windows or Mac.  You can convert this to a matrix build if you need
+    # cross-platform coverage.
+    # See: https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
+    runs-on: ubuntu-22.04
+
+    steps:
+      - uses: actions/checkout@v3
+
+      
+           
+      
+
+      - name: Install dependencies
+        run: |
+         sudo apt-get update
+         sudo apt-get install libunwind-dev libboost-all-dev build-essential qtcreator qtbase5-dev qt5-qmake qtpositioning5-dev qtmultimedia5-dev cmake libbluetooth-dev libmtp-dev libudev-dev libinput-dev libsystemd-dev libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libgstreamer-plugins-bad1.0-dev gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly gstreamer1.0-libav gstreamer1.0-tools gstreamer1.0-x gstreamer1.0-alsa gstreamer1.0-gl gstreamer1.0-gtk3 libpulse-dev gstreamer1.0-pulseaudio libtag1-dev
+         sudo apt-get -y install libgtest-dev && cd /usr/src/gtest && cmake CMakeLists.txt &&  make && cd lib && cp *.a /usr/lib
+         sudo apt-get -y install libgmock-dev && cd /usr/src/googletest/googlemock/ &&  cmake CMakeLists.txt &&  make && cd lib && cp *.a /usr/lib
+         sudo apt-get install libgtest-dev && cd /usr/src/gtest && sudo cmake CMakeLists.txt && sudo make && sudo cp lib/*.a /usr/lib && sudo ln -s /usr/lib/libgtest.a /usr/local/lib/libgtest.a && sudo ln -s /usr/lib/libgtest_main.a /usr/local/lib/libgtest_main.a
+         
+
+      ##### Setup of all internal (Polaris) dependencies
+
+      # libdbuswrapper
+      - name: Clone a tata-project repo
+        uses: actions/checkout@v3
+        with:
+          repository: Namratha-16/neww
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+          #token: ${{ secrets.BG_POLARIS }}
+          path: neww
+
+      - name: Install libdbuswrapper
+        run: |
+          cd neww
+          mkdir build
+          cd build
+          cmake -DCMAKE_PREFIX_PATH=`qmake -query QT_HOST_PREFIX` -DCMAKE_INSTALL_PREFIX=`qmake -query QT_HOST_PREFIX` ..
+          sudo make install
+          
+      - name: Test
+        run: |
+         cd unit-tests
+         cd build
+         cmake -DCMAKE_PREFIX_PATH=`qmake -query QT_HOST_PREFIX` -DCMAKE_INSTALL_PREFIX=`qmake -query QT_HOST_PREFIX` ..
+         sudo make install
+         ./dbuswrapperTest-1.0.0 --gtest_output=xml:report.xml || true
+         ls -latr
+       
+         
+    
+         
+      - name: Publish test report
+        uses: actions/upload-artifact@v2
+        with:
+           name: test-report
+           path: 'unit-tests/build/report.xml'
+     
+          

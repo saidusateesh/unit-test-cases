@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites tests="3" failures="1" disabled="0" errors="0" time="0.001" timestamp="2022-11-07T05:24:27.439" name="AllTests">
+  <testsuite name="PropertyCacheTests" tests="3" failures="1" disabled="0" skipped="0" errors="0" time="0" timestamp="2022-11-07T05:24:27.439">
+    <testcase name="initialize" status="run" result="completed" time="0" timestamp="2022-11-07T05:24:27.439" classname="PropertyCacheTests" />
+    <testcase name="target" status="run" result="completed" time="0" timestamp="2022-11-07T05:24:27.439" classname="PropertyCacheTests" />
+    <testcase name="get" status="run" result="completed" time="0" timestamp="2022-11-07T05:24:27.440" classname="PropertyCacheTests">
+      <failure message="/var/lib/jenkins/workspace/UT-Test/tata-project/unit-tests/src/dbuspropertycacheTest.cpp:66&#x0A;Expected equality of these values:&#x0A;  value&#x0A;    Which is: 16-byte object &lt;00-00 00-00 00-00 08-40 06-00 00-00 B8-55 00-00&gt;&#x0A;  propertyCache_-&gt;get(&quot;Test&quot;)&#x0A;    Which is: 16-byte object &lt;00-00 00-00 00-00 00-00 00-00 00-80 26-FD 26-F5&gt;" type=""><![CDATA[/var/lib/jenkins/workspace/UT-Test/tata-project/unit-tests/src/dbuspropertycacheTest.cpp:66
+Expected equality of these values:
+  value
+    Which is: 16-byte object <00-00 00-00 00-00 08-40 06-00 00-00 B8-55 00-00>
+  propertyCache_->get("Test")
+    Which is: 16-byte object <00-00 00-00 00-00 00-00 00-00 00-80 26-FD 26-F5>]]></failure>
+    </testcase>
+  </testsuite>
+</testsuites>
