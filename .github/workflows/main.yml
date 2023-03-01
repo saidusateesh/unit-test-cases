@@ -79,14 +79,7 @@ jobs:
            name: Test-results
            path: 'unit-tests/build/report.xml'
            
-      - name: Report to MySQL
-      env:
-        DB_HOST: ${{ secrets.DB_HOST }}
-        DB_USER: ${{ secrets.DB_USER }}
-        DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-        DB_NAME: my_database
-      run: |
-        mysql -h $DB_HOST -u $DB_USER -p$DB_PASSWORD $DB_NAME -e "INSERT INTO test_reports (test_name, status, start_time, end_time) VALUES ('my_test', 'pass', '2023-02-24 09:00:00', '2023-02-24 09:01:00')"
+      
          
      
           
