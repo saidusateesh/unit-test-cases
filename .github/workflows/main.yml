@@ -42,7 +42,7 @@ jobs:
       - name: Clone a tata-project repo
         uses: actions/checkout@v3
         with:
-          repository: saidusateesh08@gmail.com/unit-test-cases
+          repository: saidusateesh/unit-test-cases
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
           #token: ${{ secrets.BG_POLARIS }}
           path: neww
