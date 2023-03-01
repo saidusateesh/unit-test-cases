@@ -42,14 +42,14 @@ jobs:
       - name: Clone a tata-project repo
         uses: actions/checkout@v3
         with:
-          repository: Namratha-16/neww
+          repository: saidusateesh08@gmail.com/unit-test-cases
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
           #token: ${{ secrets.BG_POLARIS }}
           path: neww
 
       - name: Install libdbuswrapper
         run: |
-          cd neww
+          cd unit-test-cases
           mkdir build
           cd build
           cmake -DCMAKE_PREFIX_PATH=`qmake -query QT_HOST_PREFIX` -DCMAKE_INSTALL_PREFIX=`qmake -query QT_HOST_PREFIX` ..
